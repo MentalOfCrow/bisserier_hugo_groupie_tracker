@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de Produits</title>
+</head>
+<body>
+    {{ define "content" }}
+    <h1>Résultats de recherche</h1>
+    <div id="search-form">
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Entrez votre recherche...">
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+    <div id="search-results">
+<div id="search-results" class="results-container"></div>
+<div id="pagination-container" class="pagination"></div>
+
+        <!-- Les résultats de recherche seront affichés ici -->
+    </div>
+    {{ end }}
+
+    <script src="main.js"></script>
+</body>
+</html>

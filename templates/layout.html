@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="/asset/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/search">Recherche</a></li>
+                <li><a href="/favorites">Favoris</a></li>
+                <li><a href="/about">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {{ template "content" . }}
+    </main>
+    <footer>
+        <p>© 2024 Groupie Tracker. Tous droits réservés.</p>
+    </footer>
+    <script src="/asset/js/main.js"></script> <!-- Inclure le fichier JavaScript -->
+</body>
+</html>
