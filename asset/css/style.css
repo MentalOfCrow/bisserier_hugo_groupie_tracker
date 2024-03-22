@@ -81,6 +81,7 @@ footer {
     font-size: 14px;
     color: #888;
 }
+
 .results-container {
     display: flex;
     flex-wrap: wrap;
@@ -97,3 +98,180 @@ footer {
 .product-name, .product-brand {
     margin: 5px 0;
 }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.nav-button {
+    width: auto;
+    height: auto;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-button:hover:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    background: currentColor;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-button:hover:before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-button:hover .clone > *,
+.nav-button:hover .text > * {
+    opacity: 1;
+    font-size: 1.3rem;
+    transition: 0.2s;
+    margin-left: 4px;
+}
+
+.nav-button:hover .clone > * {
+    transform: translateY(60px);
+}
+
+.nav-button:hover .clone > :nth-child(1) {
+    transition-delay: 0.15s;
+}
+
+.nav-button:hover .clone > :nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.nav-button:hover .clone > :nth-child(3) {
+    transition-delay: 0.25s;
+}
+
+.nav-button:hover .clone > :nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+/* icon style and hover */
+.nav-button svg {
+    width: 20px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-50deg);
+    transition: 0.2s ease-out;
+}
+
+.nav-button:hover svg {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+
+
+/* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  *//* Page 404  */
+
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  
+  #notfound {
+    position: relative;
+    height: 100vh;
+    background-color: #222;
+  }
+  
+  #notfound .notfound {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  
+  .notfound {
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.4;
+  }
+  
+  .notfound .notfound-404 {
+    height: 158px;
+    line-height: 153px;
+  }
+  
+  .notfound .notfound-404 h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #222;
+    font-size: 220px;
+    letter-spacing: 10px;
+    margin: 0px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
+  }
+  
+  .notfound .notfound-404 h1>span {
+    text-shadow: 2px 2px 0px #ffab00, -2px -2px 0px #ffab00, 0px 0px 8px #ff8700;
+  }
+  
+  .notfound p {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #c9c9c9;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+  
+  .notfound a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: transparent;
+    color: #c9c9c9;
+    border: 2px solid #c9c9c9;
+    display: inline-block;
+    padding: 10px 25px;
+    font-weight: 700;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+  }
+  
+  .notfound a:hover {
+    color: #ffab00;
+    border-color: #ffab00;
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .notfound .notfound-404 {
+      height: 122px;
+      line-height: 122px;
+    }
+  
+    .notfound .notfound-404 h1 {
+        font-size: 122px;
+    } 
+  }
+  

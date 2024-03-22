@@ -9,9 +9,34 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func ErrorHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("templates/404.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	// Renvoie la page "À propos" au client.
+	err = tmpl.ExecuteTemplate(w, "404", nil)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+
 // HomeHandler gère la page d'accueil.
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Chargez le template pour la page d'accueil.
+	if r.URL.Path != "/" && r.URL.Path != "/flavicon.ico" {
+		println("404 from home")
+		tmpl, err := template.ParseFiles("templates/layout.html", "templates/404.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+			return
+		}
+		tmpl.ExecuteTemplate(w, "404", nil)
+		return
+	}
+	println("home valid")
 	tmpl, err := template.ParseFiles("templates/layout.html", "templates/index.html")
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -117,7 +142,7 @@ func FetchAllProductsByCategory(w http.ResponseWriter, r *http.Request) {
 	products, err := utils.FetchProductsByCategory(category)
 	if err != nil {
 		http.Error(w, "Failed to fetch products by category", http.StatusInternalServerError)
-		return
+		return 
 	}
 	// Renvoie les produits en tant que réponse JSON
 	w.Header().Set("Content-Type", "application/json")
@@ -153,3 +178,4 @@ func FetchSearchProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(products)
 }
+ 

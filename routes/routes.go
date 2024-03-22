@@ -26,5 +26,7 @@ func SetRoutes() {
 	// Gère les fichiers statiques (CSS, JS, images). '/asset/' est le chemin dans l'URL.
 	r.PathPrefix("/asset/").Handler(http.StripPrefix("/asset/", http.FileServer(http.Dir("asset"))))
 
+	r.NotFoundHandler = http.HandlerFunc(controllers.ErrorHandler)
+
 	http.Handle("/", r)
 }

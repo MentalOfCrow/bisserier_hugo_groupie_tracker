@@ -1,27 +1,36 @@
+{{ define "content" }}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche de Produits</title>
+    <link rel="stylesheet" href="/asset/css/style.css">
 </head>
 <body>
-    {{ define "content" }}
     <h1>Résultats de recherche</h1>
     <div id="search-form">
         <form id="search-form">
             <input type="text" id="search-input" placeholder="Entrez votre recherche...">
             <button type="submit">Rechercher</button>
-        </form>
+        </form>        
     </div>
-    <div id="search-results">
-<div id="search-results" class="results-container"></div>
-<div id="pagination-container" class="pagination"></div>
+    <div class="results-container" id="search-results">
 
-        <!-- Les résultats de recherche seront affichés ici -->
     </div>
-    {{ end }}
+    <div class="pagination" id="pagination-container"></div>
+  
+    <script src="/asset/js/main.js"></script>
+    <script>
 
-    <script src="main.js"></script>
+        function onProductClick(productCode) {
+            window.location.href = '/product/' + productCode;
+        }
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            searchProducts();
+        });
+    </script>
 </body>
 </html>
+{{ end }}
