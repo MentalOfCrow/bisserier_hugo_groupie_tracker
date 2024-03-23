@@ -1,6 +1,6 @@
 package models
 
-// ProductResponse represents the complete response structure for a product
+// La réponse des produits qui représente la réponse complete de la strcture pour les porduits
 type ProductResponse struct {
 	Code      string  `json:"code"`
 	Product   Product `json:"product"`
@@ -11,7 +11,7 @@ type ProductResponse struct {
 	Count     int     `json:"count"`
 }
 
-// Product contains detailed information about the product
+// Toutes les catégories de produit ainsi que les informations à proppos des produits
 type Product struct {
 	ID                  string `json:"_id"`
 	Allergens           string `json:"allergens"`
@@ -33,7 +33,7 @@ type Product struct {
 	NovaGroup           string `json:"nova_group"`
 	EnvironmentalImpact string `json:"environmental_impact"`
 
-	// Image fields
+	// Champs pour les images
 	ImageFrontSmallURL       string  `json:"image_front_small_url"`
 	ImageFrontThumbURL       string  `json:"image_front_thumb_url"`
 	ImageFrontURL            string  `json:"image_front_url"`
@@ -49,14 +49,14 @@ type Product struct {
 	Images                   []Image `json:"images"`
 }
 
-// Image represents the structure for image data related to the product
+// Les images représentants la structure des données des images qui sont relier au produit
 type Image struct {
 	Uploader  string     `json:"uploader"`
 	UploadedT int        `json:"uploaded_t"`
 	Sizes     ImageSizes `json:"sizes"`
 }
 
-// ImageSizes contains different sizes of the image
+// Les différentes tailles d'images possibles
 type ImageSizes struct {
 	Thumb  ImageSize `json:"thumb"`
 	Small  ImageSize `json:"small"`
@@ -64,14 +64,14 @@ type ImageSizes struct {
 	Large  ImageSize `json:"large"`
 }
 
-// ImageSize holds the URL and dimensions for a particular size
+// La taille de l'image qui contient l'URL et les dimensions d'une taille particulière par rapport à API
 type ImageSize struct {
 	URL    string `json:"url"`
 	Width  int    `json:"width"`
 	Height int    `json:"height"`
 }
 
-// Endpoints for API requests
+// Les Endpoints for les requetes de API
 const (
 	SearchProductEndpoint     = "https://world.openfoodfacts.org/api/v0/product/%s.json"
 	ListProductsByCategory    = "https://world.openfoodfacts.org/category/%s.json"

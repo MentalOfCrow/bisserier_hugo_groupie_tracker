@@ -142,7 +142,7 @@ func FetchAllProductsByCategory(w http.ResponseWriter, r *http.Request) {
 	products, err := utils.FetchProductsByCategory(category)
 	if err != nil {
 		http.Error(w, "Failed to fetch products by category", http.StatusInternalServerError)
-		return 
+		return
 	}
 	// Renvoie les produits en tant que réponse JSON
 	w.Header().Set("Content-Type", "application/json")
@@ -178,4 +178,3 @@ func FetchSearchProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(products)
 }
- 
