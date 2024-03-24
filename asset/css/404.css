@@ -80,7 +80,7 @@
     border-color: #ffab00;
   }
   
-  @media only screen and (max-width: 480px) {        /* Rappelle : Page 404  Responsives */
+  @media only screen and (max-width: 480px) {        /* Rappelle : Page 404  Responsives s'adapte au appareil */
     .notfound .notfound-404 {
       height: 122px;
       line-height: 122px;

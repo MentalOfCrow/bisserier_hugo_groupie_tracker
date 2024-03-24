@@ -1,0 +1,34 @@
+/* search.css */
+
+/* Animation lorsque le curseur survole un produit */
+.product-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pagination styles */
+.pagination {
+    text-align: center;
+}
+
+.pagination .page-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination .page-link:hover {
+    background-color: #ddd;
+}
+
+.pagination .active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}

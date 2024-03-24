@@ -90,8 +90,8 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
-	// Renvoie la page de recherche au client.
-	err = tmpl.ExecuteTemplate(w, "layout.html", nil)
+	// Renvoie la page de recherche au client avec le template "search".
+	err = tmpl.ExecuteTemplate(w, "search", nil)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
