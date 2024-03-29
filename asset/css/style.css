@@ -1,3 +1,6 @@
+/* style.css */
+
+/* Styles généraux */
 body {
     margin: 0;
     padding: 0;
@@ -167,7 +170,7 @@ footer {
     transition-delay: 0.3s;
 }
 
-/* icon style and hover */
+/* Icon style and hover */
 .nav-button svg {
     width: 20px;
     right: 0;
@@ -180,5 +183,96 @@ footer {
     transform: translateY(-50%) rotate(-90deg);
 }
 
+/* Pagination styles */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
 
+.pagination .page-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 16px; /* Taille de la police */
+}
+
+.pagination .page-link:hover {
+    background-color: #ddd;
+}
+
+.pagination .active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Style FontAwesome icons */
+.pagination .page-link i {
+    margin-right: 5px; /* Marge à droite des icônes */
+}
+
+/* Style pour les flèches */
+.pagination .prev,
+.pagination .next {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    background-color: #ddd;
+}
+
+/* Styles améliorés pour la barre de recherche */
+.search-container {
+    position: relative;
+    width: 300px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s;
+}
+
+#search-input:focus {
+    background-color: #fff;
+    border-color: #007bff;
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    color: #007bff;
+    transition: color 0.3s;
+}
+
+.search-button:hover {
+    color: #0056b3;
+}
 

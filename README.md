@@ -7,6 +7,8 @@ Si le Site est en maintenance alors faut attendre pour les données :  https://w
 APIGroupieTracker
 ├── asset
 │   ├── css
+│   │   └── 404.css
+│   │   └── search.css
 │   │   └── style.css
 │   └── img
 ├── controllers

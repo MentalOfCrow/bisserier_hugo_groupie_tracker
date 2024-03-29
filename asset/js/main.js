@@ -115,4 +115,3 @@ function onProductClick(productCode) {
     // Ajoutez ici le code pour gérer les clics sur les produits
     console.log("Clic sur le produit avec le code :", productCode);
 }
- 
