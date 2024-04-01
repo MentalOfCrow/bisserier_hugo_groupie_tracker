@@ -58,6 +58,19 @@ type Product struct {
 	Images                   []Image `json:"images"`
 }
 
+// ProductDetail représente les détails complets d'un produit
+type ProductDetail struct {
+	ID            string `json:"_id"`
+	Allergens     string `json:"allergens"`
+	Brand         string `json:"brands"`
+	Categories    string `json:"categories"`
+	GenericName   string `json:"generic_name"`
+	ProductNameFr string `json:"product_name"`
+	ProductNameEn string `json:"product_name_en"`
+	Ingredients   string `json:"ingredients_text"`
+	// Pas besoin d'en rajouter pour le moment
+}
+
 // Image représente la structure pour les données d'image liées au produit
 type Image struct {
 	Uploader  string     `json:"uploader"`

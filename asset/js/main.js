@@ -17,11 +17,12 @@ function searchProducts(page = 1) {
             return response.json();
         })
         .then(data => {
+            console.log('Résultats de la recherche:', data.products);
             displaySearchResults(data.products);
             displayPagination(page, data.page_count);
         })
         .catch(error => {
-            console.error('Erreur:', error);
+            console.error('Erreur lors de la recherche:', error);
             alert('Une erreur s\'est produite lors de la recherche');
         });
 }
@@ -35,12 +36,14 @@ function displaySearchResults(results) {
 
     // Vérifier s'il y a des résultats
     if (results.length === 0) {
+        console.log('Aucun résultat trouvé');
         searchResultsDiv.innerHTML = 'Aucun résultat trouvé';
         return;
     }
 
     // Parcourir les résultats et les ajouter à la liste
     results.forEach(result => {
+        console.log('Résultat:', result);
         var productBlock = document.createElement('div');
         productBlock.classList.add('product-block');
 
@@ -59,12 +62,24 @@ function displaySearchResults(results) {
 
         // Ajout de l'événement de clic sur le bloc de produit
         productBlock.addEventListener('click', function() {
+            console.log('Clic sur le produit:', result.code);
             onProductClick(result.code);
+        });
+
+        // Ajout de l'icône de favori
+        var favoriteIcon = document.createElement('i');
+        favoriteIcon.classList.add('far', 'fa-star', 'favorite-icon');
+        favoriteIcon.setAttribute('data-product', result.code);
+        favoriteIcon.addEventListener('click', function(event) {
+            event.stopPropagation(); // Empêche la propagation de l'événement de clic sur le produit
+            console.log('Clic sur l\'icône de favori:', result.code);
+            toggleFavorite(this, result.code);
         });
 
         productBlock.appendChild(productImage); // Ajoutez cette ligne pour inclure l'image
         productBlock.appendChild(productName);
         productBlock.appendChild(productBrand);
+        productBlock.appendChild(favoriteIcon); // Ajoute l'icône de favori
 
         searchResultsDiv.appendChild(productBlock);
     });
@@ -80,6 +95,7 @@ function displayPagination(currentPage, totalPages) {
     previousButton.innerText = 'Précédent';
     previousButton.addEventListener('click', function() {
         if (currentPage > 1) {
+            console.log('Page précédente:', currentPage - 1);
             searchProducts(currentPage - 1);
         }
     });
@@ -94,6 +110,7 @@ function displayPagination(currentPage, totalPages) {
         }
         // Ajout de l'événement de clic sur le bouton de page
         pageButton.addEventListener('click', function() {
+            console.log('Page sélectionnée:', parseInt(this.innerText));
             searchProducts(parseInt(this.innerText));
         });
         paginationContainer.appendChild(pageButton);
@@ -104,6 +121,7 @@ function displayPagination(currentPage, totalPages) {
     nextButton.innerText = 'Suivant';
     nextButton.addEventListener('click', function() {
         if (currentPage < totalPages) {
+            console.log('Page suivante:', currentPage + 1);
             searchProducts(currentPage + 1);
         }
     });
@@ -112,6 +130,48 @@ function displayPagination(currentPage, totalPages) {
 
 // Fonction pour gérer les clics sur les produits (à remplir avec le code nécessaire)
 function onProductClick(productCode) {
-    // Ajoutez ici le code pour gérer les clics sur les produits
-    console.log("Clic sur le produit avec le code :", productCode);
+    // Rediriger l'utilisateur vers la page du produit sélectionné
+    console.log('Redirection vers le produit:', productCode);
+    window.location.href = '/product/' + productCode;
 }
+
+// Fonction pour gérer l'ajout ou la suppression des favoris
+function toggleFavorite(element, productCode) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const index = favorites.indexOf(productCode);
+    if (index === -1) {
+        favorites.push(productCode); // Ajouter aux favoris
+        console.log('Produit ajouté aux favoris:', productCode);
+        element.classList.add('fas'); // Rendre l'étoile pleine
+    } else {
+        favorites.splice(index, 1); // Retirer des favoris
+        console.log('Produit retiré des favoris:', productCode);
+        element.classList.remove('fas'); // Rendre l'étoile vide
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}
+
+// Fonction pour mettre à jour l'icône de favori lors du chargement de la page
+function updateFavoriteIcon(productCode) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const index = favorites.indexOf(productCode);
+    if (index !== -1) {
+        const favoriteIcon = document.querySelector(`[data-product="${productCode}"]`);
+        if (favoriteIcon) {
+            favoriteIcon.classList.add('fas');
+            console.log('Produit trouvé dans les favoris:', productCode);
+        }
+    }
+}
+
+// Événement pour gérer les clics sur l'icône de favori
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.classList.contains('favorite-icon')) {
+        const productCode = event.target.getAttribute('data-product');
+        console.log('Clic sur l\'icône de favori:', productCode);
+        toggleFavorite(event.target, productCode);
+    }
+});
+
+// Appel de la fonction pour mettre à jour les icônes de favori lors du chargement de la page
+updateFavoriteIcon(productCode);

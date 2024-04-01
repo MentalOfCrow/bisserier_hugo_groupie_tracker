@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"APIGroupieTracker/models"
 	"APIGroupieTracker/utils"
 	"encoding/json"
 	"net/http"
@@ -102,20 +103,38 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 func ProductHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	barcode := vars["barcode"]
-	// Chargez le template pour la page du produit.
-	tmpl, err := template.ParseFiles("templates/layout.html", "templates/product.html")
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+
 	// Chargez les données du produit.
 	product, err := utils.FetchProductData(barcode)
 	if err != nil {
 		http.Error(w, "Failed to fetch product data", http.StatusInternalServerError)
 		return
 	}
+
+	// Convertissez les données du produit en JSON
+	productJSON, err := json.Marshal(product)
+	if err != nil {
+		http.Error(w, "Failed to marshal product data", http.StatusInternalServerError)
+		return
+	}
+
+	// Convertissez le JSON en struct ProductDetail
+	var productDetail models.ProductDetail
+	err = json.Unmarshal(productJSON, &productDetail)
+	if err != nil {
+		http.Error(w, "Failed to unmarshal product data", http.StatusInternalServerError)
+		return
+	}
+
+	// Chargez le template pour la page du produit.
+	tmpl, err := template.ParseFiles("templates/layout.html", "templates/product.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
 	// Renvoie la page du produit au client avec les données du produit.
-	err = tmpl.ExecuteTemplate(w, "layout.html", product)
+	err = tmpl.ExecuteTemplate(w, "layout.html", productDetail)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return

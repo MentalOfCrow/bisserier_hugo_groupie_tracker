@@ -1,15 +1,15 @@
 {{ define "content" }}
 <div class="product-details">
-    <h1>{{ .ProductName }}</h1>
+    <h1>{{ .Product.ProductNameFr }}</h1>
     <ul>
-        <li><strong>ID:</strong> {{ .ID }}</li>
-        <li><strong>Allergènes:</strong> {{ .Allergens }}</li>
-        <li><strong>Marque:</strong> {{ .Brands }}</li>
-        <li><strong>Catégories:</strong> {{ .Categories }}</li>
-        <li><strong>Nom générique:</strong> {{ .GenericName }}</li>
-        <li><strong>Nom du produit (en français):</strong> {{ .ProductName }}</li>
-        <li><strong>Nom du produit (en anglais):</strong> {{ .ProductNameEn }}</li>
-        <li><strong>Ingrédients:</strong> {{ .IngredientsText }}</li>
+        <li><strong>ID:</strong> {{ .Product.ID }}</li>
+        <li><strong>Allergènes:</strong> {{ .Product.Allergens }}</li>
+        <li><strong>Marque:</strong> {{ .Product.Brand }}</li>
+        <li><strong>Catégories:</strong> {{ .Product.Categories }}</li>
+        <li><strong>Nom générique:</strong> {{ .Product.GenericName }}</li>
+        <li><strong>Nom du produit (en français):</strong> {{ .Product.ProductNameFr }}</li>
+        <li><strong>Nom du produit (en anglais):</strong> {{ .Product.ProductNameEn }}</li>
+        <li><strong>Ingrédients:</strong> {{ .Product.Ingredients }}</li>
     </ul>
 </div>
-{{ end }} 
+{{ end }}
