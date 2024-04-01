@@ -17,6 +17,11 @@ func SetRoutes() {
 	r.HandleFunc("/favorites", controllers.FavoritesHandler).Methods("GET")
 	r.HandleFunc("/search", controllers.SearchHandler).Methods("GET")
 	r.HandleFunc("/product/{barcode}", controllers.ProductHandler).Methods("GET")
+	r.HandleFunc("/product", controllers.ProductHandler).Methods("GET")
+
+	//favorites.go :
+	r.HandleFunc("/api/favorites/add", controllers.AddToFavorites).Methods("POST")
+	r.HandleFunc("/api/favorites/remove", controllers.RemoveFromFavorites).Methods("POST")
 
 	// Routes pour les API
 	r.HandleFunc("/api/product/{barcode}", controllers.FetchProductByBarcode).Methods("GET")

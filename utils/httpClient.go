@@ -1,11 +1,13 @@
 package utils
 
 import (
+	"APIGroupieTracker/models"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 // FetchProductData récupère les données d'un produit via son code-barres.
@@ -127,4 +129,35 @@ func FetchSearchResults(searchQuery string) ([]interface{}, error) {
 
 	// Renvoyer les produits trouvés
 	return searchResponse.Products, nil
+}
+
+const favoritesFilePath = "data/favorites.json"
+
+func ReadFavorites() ([]models.Favorite, error) {
+	fmt.Println("Tentative de lecture des favoris.")
+	var favorites []models.Favorite
+	bytes, err := ioutil.ReadFile(favoritesFilePath)
+	if err != nil {
+		fmt.Println("Erreur lors de la lecture des favoris:", err)
+		if os.IsNotExist(err) {
+			return []models.Favorite{}, nil
+		}
+		return nil, err
+	}
+	err = json.Unmarshal(bytes, &favorites)
+	if err != nil {
+		fmt.Println("Erreur lors de la désérialisation des favoris:", err)
+		return nil, err
+	}
+	return favorites, nil
+}
+
+// WriteFavorites écrit les favoris dans le fichier JSON.
+func WriteFavorites(favorites []models.Favorite) error {
+	data, err := json.MarshalIndent(favorites, "", "    ")
+	if err != nil {
+		return err
+	}
+
+	return ioutil.WriteFile(favoritesFilePath, data, 0644)
 }

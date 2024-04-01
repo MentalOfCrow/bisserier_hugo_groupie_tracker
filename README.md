@@ -22,7 +22,7 @@ APIGroupieTracker
 ├── models
 │   └── product.go
 ├── data
-│   └── data.json
+│   └── favorites.json
 ├── routes
 │   └── routes.go
 ├── templates

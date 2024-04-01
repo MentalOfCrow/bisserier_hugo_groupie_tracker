@@ -93,7 +93,14 @@ type ImageSize struct {
 	Height int    `json:"height"`
 }
 
-// Endpoints pour les requêtes API
+// Permet de mettre en place les favories
+type Favorite struct {
+	Code     string `json:"code"`
+	Name     string `json:"name"`
+	ImageURL string `json:"image_url"`
+}
+
+// Endpoints pour les requêtes API sinon ca affiche pas les produits de API Open Food Facts
 const (
 	SearchProductEndpoint     = "https://world.openfoodfacts.org/api/v0/product/%s.json"
 	ListProductsByCategory    = "https://world.openfoodfacts.org/category/%s.json"

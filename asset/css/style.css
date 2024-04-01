@@ -276,3 +276,13 @@ footer {
     color: #0056b3;
 }
 
+
+/*Bas de la page Animation : quand on clique sur © 2024 Groupie Tracker. Tous droits réservés. */
+.footer-text {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.footer-text:hover {
+    color: #ff4500; /* Change la couleur du texte au survol #ff4500 */
+}

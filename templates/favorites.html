@@ -6,27 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vos favoris</title>
     <link rel="stylesheet" href="/asset/css/style.css">
-    <link rel="stylesheet" href="/asset/css/favorites.css"> <!-- Nouveau fichier CSS pour les favoris -->
+    <link rel="stylesheet" href="/asset/css/favorites.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <main>
         <h1>Vos favoris</h1>
         <p>Consultez vos produits favoris sauvegardés.</p>
-        <div class="favorites-container">
-            {{ range .Favorites }}
-            <div class="favorite-item">
-                <img src="{{ .Image }}" alt="{{ .ProductName }}">
-                <h2>{{ .ProductName }}</h2>
-                <p>{{ .Description }}</p>
-            </div>
-            {{ end }}
+        <div class="favorites-container" id="favorites-container">
+            
         </div>
     </main>
     <footer>
         <p>© 2024 Groupie Tracker. Tous droits réservés.</p>
     </footer>
     <script src="/asset/js/main.js"></script>
+    <script>
+        // Fonction pour charger les favoris depuis le fichier JSON
+        function loadFavorites() {
+            fetch('/api/favorites') 
+                .then(response => response.json())
+                .then(data => {
+                    const favoritesContainer = document.getElementById('favorites-container');
+                    favoritesContainer.innerHTML = ''; // Effacer les favoris précédents
+                    data.forEach(favorite => {
+                        const favoriteItem = document.createElement('div');
+                        favoriteItem.classList.add('favorite-item');
+                        favoriteItem.innerHTML = `
+                            <img src="${favorite.image}" alt="${favorite.name}">
+                            <h2>${favorite.name}</h2>
+                        `;
+                        favoritesContainer.appendChild(favoriteItem);
+                    });
+                })
+                .catch(error => console.error('Erreur lors du chargement des favoris:', error));
+        }
+
+        // Appeler la fonction pour charger les favoris lors du chargement de la page
+        document.addEventListener('DOMContentLoaded', loadFavorites);
+    </script>
 </body>
 </html>
 {{ end }}

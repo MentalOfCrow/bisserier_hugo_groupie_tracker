@@ -8,21 +8,21 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><button class="nav-button"><a href="/"><i class="fas fa-home"></i> Accueil</a></button></li>
-                <li><button class="nav-button"><a href="/search"><i class="fas fa-search"></i> Recherche</a></button></li>
-                <li><button class="nav-button"><a href="/favorites"><i class="fas fa-star"></i> Favoris</a></button></li>
-                <li><button class="nav-button"><a href="/about"><i class="fas fa-info-circle"></i> À propos</a></button></li>
-            </ul>
-        </nav>
+    <nav>
+      <ul>
+         <li><button class="nav-button"><a href="/"><i class="fas fa-home"></i> Accueil</a></button></li>
+         <li><button class="nav-button"><a href="/search"><i class="fas fa-search"></i> Recherche</a></button></li>
+         <li><button class="nav-button"><a href="/favorites"><i class="fas fa-star"></i> Favoris</a></button></li>
+         <li><button class="nav-button"><a href="/about"><i class="fas fa-info-circle"></i> À propos</a></button></li>
+     </ul>
+    </nav>
     </header>
     <main>
         {{ template "content" . }}
     </main>
-    <footer>
-        <p>© 2024 Groupie Tracker. Tous droits réservés.</p>
-    </footer>
+        <footer>
+            <p id="footer-text" class="footer-text">© 2024 Groupie Tracker. Tous droits réservés.</p>
+        </footer>
     <script src="/asset/js/main.js"></script>
 </body>
 </html>

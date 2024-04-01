@@ -27,7 +27,6 @@ function searchProducts(page = 1) {
         });
 }
 
-// Fonction pour afficher les résultats de recherche
 function displaySearchResults(results) {
     var searchResultsDiv = document.getElementById('search-results');
 
@@ -70,10 +69,12 @@ function displaySearchResults(results) {
         var favoriteIcon = document.createElement('i');
         favoriteIcon.classList.add('far', 'fa-star', 'favorite-icon');
         favoriteIcon.setAttribute('data-product', result.code);
+        favoriteIcon.setAttribute('data-name', result.product_name);
+        favoriteIcon.setAttribute('data-image', result.image_front_url);
         favoriteIcon.addEventListener('click', function(event) {
             event.stopPropagation(); // Empêche la propagation de l'événement de clic sur le produit
             console.log('Clic sur l\'icône de favori:', result.code);
-            toggleFavorite(this, result.code);
+            toggleFavorite(this, result.code, result.product_name, result.image_front_url);
         });
 
         productBlock.appendChild(productImage); // Ajoutez cette ligne pour inclure l'image
@@ -135,26 +136,47 @@ function onProductClick(productCode) {
     window.location.href = '/product/' + productCode;
 }
 
-// Fonction pour gérer l'ajout ou la suppression des favoris
-function toggleFavorite(element, productCode) {
+function toggleFavorite(element, productCode, productName, imageUrl) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const index = favorites.indexOf(productCode);
-    if (index === -1) {
-        favorites.push(productCode); // Ajouter aux favoris
-        console.log('Produit ajouté aux favoris:', productCode);
-        element.classList.add('fas'); // Rendre l'étoile pleine
+    let isFavorite = favorites.some(fav => fav.code === productCode);
+    
+    const favoriteData = { code: productCode, name: productName, image_url: imageUrl };
+    const url = isFavorite ? '/api/favorites/remove' : '/api/favorites/add';
+    
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(favoriteData)
+    }).then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Failed to ${isFavorite ? 'remove' : 'add'} favorite: ${text}`); });
+        }
+        return response.json(); // Si vous envoyez une réponse JSON depuis le serveur
+    }).then(data => {
+        // Mettre à jour l'icône de l'étoile ici si nécessaire
+        updateFavoritesList(isFavorite, favorites, favoriteData, element, productCode);
+    }).catch(error => {
+        console.error('Error toggling favorite:', error);
+    });
+}
+
+function updateFavoritesList(isFavorite, favorites, favoriteData, element, productCode) {
+    if (isFavorite) {
+        favorites = favorites.filter(fav => fav.code !== productCode);
+        element.classList.remove('fas'); // Suppose que 'fas' est la classe pour un favori
     } else {
-        favorites.splice(index, 1); // Retirer des favoris
-        console.log('Produit retiré des favoris:', productCode);
-        element.classList.remove('fas'); // Rendre l'étoile vide
+        favorites.push(favoriteData);
+        element.classList.add('fas'); // Ajoute la classe pour indiquer un favori
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
+
+
 // Fonction pour mettre à jour l'icône de favori lors du chargement de la page
 function updateFavoriteIcon(productCode) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const index = favorites.indexOf(productCode);
+    const index = favorites.findIndex(favorite => favorite.code === productCode);
     if (index !== -1) {
         const favoriteIcon = document.querySelector(`[data-product="${productCode}"]`);
         if (favoriteIcon) {
@@ -175,3 +197,8 @@ document.addEventListener('click', function(event) {
 
 // Appel de la fonction pour mettre à jour les icônes de favori lors du chargement de la page
 updateFavoriteIcon(productCode);
+
+function onProductClick(productCode) {
+    window.location.href = '/product?code=' + productCode;
+}
+
