@@ -66,3 +66,14 @@ func RemoveFromFavorites(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"message": "Favori supprimé avec succès"})
 }
+
+// GetFavorites renvoie la liste des favoris.
+func GetFavorites(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	favorites, err := utils.ReadFavorites()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(favorites)
+}

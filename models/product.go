@@ -93,7 +93,7 @@ type ImageSize struct {
 	Height int    `json:"height"`
 }
 
-// Permet de mettre en place les favories
+// Permet de mettre en place
 type Favorite struct {
 	Code     string `json:"code"`
 	Name     string `json:"name"`

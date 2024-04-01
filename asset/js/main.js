@@ -132,8 +132,7 @@ function displayPagination(currentPage, totalPages) {
 // Fonction pour gérer les clics sur les produits (à remplir avec le code nécessaire)
 function onProductClick(productCode) {
     // Rediriger l'utilisateur vers la page du produit sélectionné
-    console.log('Redirection vers le produit:', productCode);
-    window.location.href = '/product/' + productCode;
+    window.location.href = `/product?code=${productCode}`;
 }
 
 function toggleFavorite(element, productCode, productName, imageUrl) {

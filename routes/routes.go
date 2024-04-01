@@ -20,6 +20,7 @@ func SetRoutes() {
 	r.HandleFunc("/product", controllers.ProductHandler).Methods("GET")
 
 	//favorites.go :
+	r.HandleFunc("/api/favorites", controllers.GetFavorites).Methods("GET")
 	r.HandleFunc("/api/favorites/add", controllers.AddToFavorites).Methods("POST")
 	r.HandleFunc("/api/favorites/remove", controllers.RemoveFromFavorites).Methods("POST")
 
