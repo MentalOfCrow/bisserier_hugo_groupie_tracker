@@ -100,7 +100,7 @@ type Favorite struct {
 	ImageURL string `json:"image_url"`
 }
 
-// Permet ProductDetails probleme sur API open food facts
+// Permet ProductDetails probleme sur API open food facts problmes
 type ProductDetails struct {
 	ID            string `json:"_id"`
 	Allergens     string `json:"allergens"`
