@@ -33,3 +33,17 @@
     border-color: #007bff;
 }
 
+/* Media Queries pour rendre les styles responsifs */
+@media only screen and (max-width: 768px) {
+    .pagination .page-link {
+        padding: 6px 12px;
+        margin: 0 2px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .pagination .page-link {
+        padding: 4px 8px;
+        margin: 0 1px;
+    }
+}

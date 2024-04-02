@@ -100,6 +100,18 @@ type Favorite struct {
 	ImageURL string `json:"image_url"`
 }
 
+// Pour prend les informations de API et les renvoyers dans productdetails pour les affichers ensuite
+type ProductDetails struct {
+	ID            string `json:"_id"`
+	Allergens     string `json:"allergens"`
+	Brand         string `json:"brand"`
+	Categories    string `json:"categories"`
+	GenericName   string `json:"generic_name"`
+	ProductNameFr string `json:"product_name_fr"`
+	ProductNameEn string `json:"product_name_en"`
+	Ingredients   string `json:"ingredients"`
+}
+
 // Endpoints pour les requêtes API sinon ca affiche pas les produits de API Open Food Facts
 const (
 	SearchProductEndpoint     = "https://world.openfoodfacts.org/api/v0/product/%s.json"

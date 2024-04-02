@@ -26,6 +26,19 @@
     <div id="search-form" class="search-container">
         <form id="search-form">
             <input type="text" id="search-input" placeholder="Rechercher...">
+            <!-- On peux rajouter des filtres si on le souhaite mais pour pas surcharger l'API tellement qu'il y a de données-->
+            <select id="category-filter">
+                <option value="">Toutes catégories</option>
+                <option value="boissons">Boissons</option>
+                <option value="snacks">Snacks</option>
+                <!-- On peux si on le souhaite rajouter des boissons pays mais pour pas surcharger l'API tellement qu'il y a de données -->
+            </select>
+            <select id="country-filter">
+                <option value="">Tous pays</option>
+                <option value="france">France</option>
+                <option value="united-states">États-Unis</option>
+                <!-- On peux si on le souhaite rajouter des pays mais pour pas surcharger l'API tellement qu'il y a de données -->
+            </select>
             <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
     </div>

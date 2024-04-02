@@ -1,15 +1,16 @@
 {{ define "content" }}
 <div class="product-details">
-    <h1>{{ .Product.ProductNameFr }}</h1>
+    <h1 id="product-name"></h1>
     <ul>
-        <li><strong>ID:</strong> {{ .Product.ID }}</li>
-        <li><strong>Allergènes:</strong> {{ .Product.Allergens }}</li>
-        <li><strong>Marque:</strong> {{ .Product.Brand }}</li>
-        <li><strong>Catégories:</strong> {{ .Product.Categories }}</li>
-        <li><strong>Nom générique:</strong> {{ .Product.GenericName }}</li>
-        <li><strong>Nom du produit (en français):</strong> {{ .Product.ProductNameFr }}</li>
-        <li><strong>Nom du produit (en anglais):</strong> {{ .Product.ProductNameEn }}</li>
-        <li><strong>Ingrédients:</strong> {{ .Product.Ingredients }}</li>
+        <li><strong>ID:</strong> <span id="product-id"></span></li>
+        <li><strong>Allergènes:</strong> <span id="product-allergens"></span></li>
+        <li><strong>Marque:</strong> <span id="product-brand"></span></li>
+        <li><strong>Catégories:</strong> <span id="product-categories"></span></li>
+        <li><strong>Nom générique:</strong> <span id="product-generic-name"></span></li>
+        <li><strong>Nom du produit (en français):</strong> <span id="product-name-fr"></span></li>
+        <li><strong>Nom du produit (en anglais):</strong> <span id="product-name-en"></span></li>
+        <li><strong>Ingrédients:</strong> <span id="product-ingredients"></span></li>
     </ul>
 </div>
 {{ end }}
+<!-- Probleme de serveur à cause de ca cela renvoie pas les details des produits car h24 en maintenance un peu dégouter -->

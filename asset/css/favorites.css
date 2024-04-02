@@ -1,5 +1,4 @@
-/* CSS pour la page des favoris */
-
+/* Styles par défaut pour tous les appareils */
 .favorite-item {
     margin-bottom: 20px;
     padding: 10px;
@@ -30,4 +29,51 @@
     color: gold; /* Couleur de l'étoile remplie */
     margin-left: 10px;
     cursor: pointer;
+}
+
+/* Media Queries pour rendre la page responsive */
+@media only screen and (max-width: 768px) {
+    .favorite-item {
+        padding: 8px;
+    }
+    
+    .favorite-item img {
+        width: 80px;
+    }
+    
+    .favorite-item h2 {
+        font-size: 16px;
+    }
+    
+    .favorite-item p {
+        font-size: 12px;
+    }
+    
+    .favorite-icon {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .favorite-item {
+        margin-bottom: 10px;
+        padding: 6px;
+    }
+    
+    .favorite-item img {
+        width: 60px;
+    }
+    
+    .favorite-item h2 {
+        font-size: 14px;
+    }
+    
+    .favorite-item p {
+        font-size: 10px;
+    }
+    
+    .favorite-icon {
+        font-size: 14px;
+        margin-left: 5px;
+    }
 }

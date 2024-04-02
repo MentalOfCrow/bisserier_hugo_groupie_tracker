@@ -286,3 +286,75 @@ footer {
 .footer-text:hover {
     color: #ff4500; /* Change la couleur du texte au survol #ff4500 */
 }
+
+/* Media Queries pour rendre les styles responsifs */
+@media only screen and (max-width: 768px) {
+    header nav ul li {
+        margin-right: 10px; /* Réduire la marge entre les éléments du menu */
+    }
+
+    .intro, .search-results {
+        width: 90%; /* Ajuster la largeur pour les petits écrans */
+    }
+
+    .btn {
+        margin-top: 15px; /* Ajuster la marge du bouton */
+    }
+
+    .product-block {
+        width: 100%; /* Afficher les produits sur toute la largeur */
+    }
+
+    .footer {
+        padding: 0.5em 0; /* Ajuster le rembourrage du pied de page */
+    }
+
+    .pagination .page-link {
+        padding: 6px 12px; /* Ajuster le rembourrage des liens de pagination */
+        font-size: 14px; /* Ajuster la taille de la police pour les petits écrans */
+    }
+
+    #search-input {
+        width: 80%; /* Ajuster la largeur de l'entrée de recherche */
+    }
+
+    .search-button {
+        right: 5px; /* Ajuster la position du bouton de recherche */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header nav ul li {
+        margin-right: 5px; /* Réduire davantage la marge entre les éléments du menu */
+    }
+
+    .intro, .search-results {
+        width: 95%; /* Ajuster la largeur pour les écrans très petits */
+    }
+
+    .btn {
+        padding: 8px 16px; /* Ajuster le rembourrage du bouton */
+        font-size: 14px; /* Ajuster la taille de la police pour les petits écrans */
+    }
+
+    .product-block {
+        width: 100%; /* Afficher les produits sur toute la largeur */
+    }
+
+    .footer {
+        padding: 0.2em 0; /* Ajuster davantage le rembourrage du pied de page */
+    }
+
+    .pagination .page-link {
+        padding: 4px 8px; /* Ajuster davantage le rembourrage des liens de pagination */
+        font-size: 12px; /* Ajuster davantage la taille de la police pour les écrans très petits */
+    }
+
+    #search-input {
+        width: 70%; /* Ajuster davantage la largeur de l'entrée de recherche */
+    }
+
+    .search-button {
+        right: 2px; /* Ajuster davantage la position du bouton de recherche */
+    }
+}

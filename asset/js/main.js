@@ -1,19 +1,23 @@
-// Fonction pour effectuer une recherche
 function searchProducts(page = 1) {
     var query = document.getElementById('search-input').value;
-    if (!query.trim()) {
-        alert('Veuillez entrer un terme de recherche');
-        return;
+    var category = document.getElementById('category-filter').value;
+    var country = document.getElementById('country-filter').value;
+    
+    var endpoint = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&page=${page}&page_size=20&search_simple=1&action=process&json=1`;
+    
+    // Ajoute des filtres à l'URL si nécessaire
+    if(category) {
+        endpoint += `&tagtype_0=categories&tag_contains_0=contains&tag_0=${category}`;
+    }
+    if(country) {
+        endpoint += `&tagtype_1=countries&tag_contains_1=contains&tag_1=${country}`;
     }
 
-    // Ajout du paramètre de page à l'URL de recherche
-    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&page=${page}&page_size=20&search_simple=1&action=process&json=1`)
+    fetch(endpoint)
         .then(response => {
-            // Vérifier si la réponse est OK
             if (!response.ok) {
                 throw new Error('Échec de la requête');
             }
-            // Convertir la réponse en JSON
             return response.json();
         })
         .then(data => {
@@ -26,6 +30,7 @@ function searchProducts(page = 1) {
             alert('Une erreur s\'est produite lors de la recherche');
         });
 }
+
 
 function displaySearchResults(results) {
     var searchResultsDiv = document.getElementById('search-results');
