@@ -1,0 +1,28 @@
+[
+{
+    "status": 1,
+    "product": {
+      "product_name": "Nom du produit",
+      "brands": "Marque",
+      "nutrition_grade_fr": "a",
+      "nova_group": "1",
+      "ecoscore_score": 75,
+      "ingredients_text": "Liste des ingrédients",
+      "allergens": "Allergènes",
+      "additives_tags": ["additif1", "additif2"],
+    
+      "nutrient_levels": {
+        "fat": "low",
+        "saturated-fat": "low",
+        "sugars": "low",
+        "salt": "medium"
+      },
+      "nutriments": {
+        "energy_100g": "100",
+        "fat_100g": "0.5"
+        
+      }
+      
+    }
+  }
+]

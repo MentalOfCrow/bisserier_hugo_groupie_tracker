@@ -34,62 +34,59 @@ function searchProducts(page = 1) {
 
 function displaySearchResults(results) {
     var searchResultsDiv = document.getElementById('search-results');
+    searchResultsDiv.innerHTML = ''; // Efface les résultats précédents
 
-    // Effacer les résultats précédents
-    searchResultsDiv.innerHTML = '';
-
-    // Vérifier s'il y a des résultats
     if (results.length === 0) {
-        console.log('Aucun résultat trouvé');
         searchResultsDiv.innerHTML = 'Aucun résultat trouvé';
         return;
     }
 
-    // Parcourir les résultats et les ajouter à la liste
     results.forEach(result => {
-        console.log('Résultat:', result);
         var productBlock = document.createElement('div');
         productBlock.classList.add('product-block');
 
+        // Création et ajout des éléments de produit (nom, marque, image)
         var productName = document.createElement('p');
-        productName.classList.add('product-name');
         productName.textContent = result.product_name;
-
-        var productBrand = document.createElement('p');
-        productBrand.classList.add('product-brand');
-        productBrand.textContent = result.brands;
-
-        var productImage = document.createElement('img');
-        productImage.classList.add('product-image');
-        productImage.src = result.image_front_url || 'path/to/default/image.jpg'; // Assurez-vous que ce champ correspond à celui de votre API
-        productImage.alt = "Image du produit " + result.product_name;
-
-        // Ajout de l'événement de clic sur le bloc de produit
-        productBlock.addEventListener('click', function() {
-            console.log('Clic sur le produit:', result.code);
-            onProductClick(result.code);
-        });
-
-        // Ajout de l'icône de favori
-        var favoriteIcon = document.createElement('i');
-        favoriteIcon.classList.add('far', 'fa-star', 'favorite-icon');
-        favoriteIcon.setAttribute('data-product', result.code);
-        favoriteIcon.setAttribute('data-name', result.product_name);
-        favoriteIcon.setAttribute('data-image', result.image_front_url);
-        favoriteIcon.addEventListener('click', function(event) {
-            event.stopPropagation(); // Empêche la propagation de l'événement de clic sur le produit
-            console.log('Clic sur l\'icône de favori:', result.code);
-            toggleFavorite(this, result.code, result.product_name, result.image_front_url);
-        });
-
-        productBlock.appendChild(productImage); // Ajoutez cette ligne pour inclure l'image
         productBlock.appendChild(productName);
-        productBlock.appendChild(productBrand);
-        productBlock.appendChild(favoriteIcon); // Ajoute l'icône de favori
+
+        // Ajouter la marque si elle est disponible
+        if (result.brands) {
+            var productBrand = document.createElement('p');
+            productBrand.textContent = `Marque: ${result.brands}`;
+            productBlock.appendChild(productBrand);
+        }
+
+        // Ajouter l'image si elle est disponible
+        if (result.image_front_url) {
+            var productImage = document.createElement('img');
+            productImage.src = result.image_front_url;
+            productImage.alt = `Image de ${result.product_name}`;
+            productImage.classList.add('product-image');
+            productBlock.appendChild(productImage);
+        }
+
+        // Ajout de Nutriscore et Nova score si disponibles
+        if (result.nutrition_grade_fr) {
+            var nutriscore = document.createElement('p');
+            nutriscore.textContent = `Nutriscore: ${result.nutrition_grade_fr.toUpperCase()}`;
+            productBlock.appendChild(nutriscore);
+        }
+        if (result.nova_group) {
+            var novaScore = document.createElement('p');
+            novaScore.textContent = `Nova Score: ${result.nova_group}`;
+            productBlock.appendChild(novaScore);
+        }
+
+        // Ajout de l'événement de clic pour rediriger vers la page de détails du produit
+        productBlock.addEventListener('click', function() {
+            window.location.href = `/product?code=${result.code}`;
+        });
 
         searchResultsDiv.appendChild(productBlock);
     });
 }
+
 
 // Fonction pour afficher la pagination
 function displayPagination(currentPage, totalPages) {

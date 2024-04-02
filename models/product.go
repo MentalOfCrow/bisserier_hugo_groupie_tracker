@@ -112,9 +112,18 @@ type ProductDetails struct {
 	Ingredients   string `json:"ingredients"`
 }
 
-// Endpoints pour les requêtes de l'API = sinon ca affiche pas les produits de API Open Food Facts
+// Endpoints API OPEN FOOD FACTS
 const (
+
+	// 3 Requetes Minimums
 	SearchProductEndpoint     = "https://world.openfoodfacts.org/api/v0/product/%s.json"
 	ListProductsByCategory    = "https://world.openfoodfacts.org/category/%s.json"
 	ProductsByCountryEndpoint = "https://world.openfoodfacts.org/country/%s.json"
+	// Bonus
+	ProductsByBrandEndpoint    = "https://world.openfoodfacts.org/brand/%s.json"
+	ProductsByLabelEndpoint    = "https://world.openfoodfacts.org/label/%s.json"
+	ProductsByAdditiveEndpoint = "https://world.openfoodfacts.org/additive/%s.json"
+	ProductsByAllergenEndpoint = "https://world.openfoodfacts.org/allergen/%s.json"
+	UserContributionsEndpoint  = "https://world.openfoodfacts.org/contributor/%s.json"
+	GeneralSearchEndpoint      = "https://world.openfoodfacts.org/cgi/search.pl"
 )

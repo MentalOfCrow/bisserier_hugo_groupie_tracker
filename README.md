@@ -38,6 +38,7 @@ APIGroupieTracker
 │   └── product.go
 ├── data
 │   └── favorites.json
+│   └── SearchProductEndpoint.json
 ├── routes
 │   └── routes.go
 ├── templates
