@@ -36,7 +36,7 @@
     font-weight: bold;
 }
 
-/* Media Queries pour rendre la pagination responsive */
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
     .pagination button {
         font-size: 16px;
@@ -54,6 +54,7 @@
     }
 }
 
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 480px) {
     .pagination {
         margin-top: 10px;

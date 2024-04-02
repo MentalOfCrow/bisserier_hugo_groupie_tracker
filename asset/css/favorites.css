@@ -1,3 +1,4 @@
+/* Css du fichier : favorite.css */
 /* Styles par défaut pour tous les appareils */
 .favorite-item {
     margin-bottom: 20px;
@@ -31,7 +32,7 @@
     cursor: pointer;
 }
 
-/* Media Queries pour rendre la page responsive */
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
     .favorite-item {
         padding: 8px;
@@ -54,6 +55,7 @@
     }
 }
 
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 480px) {
     .favorite-item {
         margin-bottom: 10px;

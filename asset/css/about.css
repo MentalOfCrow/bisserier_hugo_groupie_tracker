@@ -1,4 +1,4 @@
-/* Styles par défaut pour tous les appareils */
+/* Css du fichier : About.css Styles Repris d'un projet */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +6,7 @@ body {
     background-color: #f2f2f2;
 }
 
+/* Classique l'entete */
 header {
     background-color: #333;
     color: white;
@@ -13,6 +14,7 @@ header {
     text-align: center;
 }
 
+/* Content = le Contenu */
 .content {
     background-color: white;
     margin: 20px auto;
@@ -21,6 +23,7 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+/* En bas de la page  */
 footer {
     background-color: #333;
     color: white;
@@ -28,42 +31,32 @@ footer {
     text-align: center;
 }
 
+/* footer a = le lien de la page */
 footer a {
     color: white;
     text-decoration: none;
 }
 
+/* Quand il survole le bas de la page avec le liens alors  on change la couleur du texte */
 footer a:hover {
     text-decoration: underline;
 }
 
-/* Media Queries pour rendre la page responsive */
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
-    header {
+    header, .content, footer {
         padding: 15px;
     }
-    
     .content {
         margin: 15px auto;
-        padding: 15px;
-    }
-    
-    footer {
-        padding: 15px;
     }
 }
-
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 480px) {
-    header {
+    header, .content, footer {
         padding: 10px;
     }
-    
     .content {
         margin: 10px auto;
-        padding: 10px;
-    }
-    
-    footer {
-        padding: 10px;
     }
 }

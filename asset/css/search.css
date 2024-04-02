@@ -1,5 +1,4 @@
-/* search.css */
-
+/* Le css pour la barre de recherche : search.css */
 /* Animation lorsque le curseur survole un produit */
 .product-block:hover {
     transform: translateY(-5px);
@@ -33,7 +32,7 @@
     border-color: #007bff;
 }
 
-/* Media Queries pour rendre les styles responsifs */
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
     .pagination .page-link {
         padding: 6px 12px;
@@ -41,6 +40,7 @@
     }
 }
 
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 480px) {
     .pagination .page-link {
         padding: 4px 8px;

@@ -1,6 +1,6 @@
-/* style.css */
+/* C'est le css : style.css */
 
-/* Styles généraux */
+/* Styles Principaux */
 body {
     margin: 0;
     padding: 0;
@@ -170,7 +170,7 @@ footer {
     transition-delay: 0.3s;
 }
 
-/* Icon style and hover */
+/* Style d'icône et survol de texte */
 .nav-button svg {
     width: 20px;
     right: 0;
@@ -183,7 +183,7 @@ footer {
     transform: translateY(-50%) rotate(-90deg);
 }
 
-/* Pagination styles */
+/* Le style de La Paginaation */
 .pagination {
     text-align: center;
     margin-top: 20px;
@@ -198,7 +198,7 @@ footer {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s;
-    font-size: 16px; /* Taille de la police */
+    font-size: 16px;                            /* Rappelle : Taille de la police */
 }
 
 .pagination .page-link:hover {
@@ -211,12 +211,12 @@ footer {
     border-color: #007bff;
 }
 
-/* Style FontAwesome icons */
+/* Bibliotheque = Style FontAwesome icons */
 .pagination .page-link i {
     margin-right: 5px; /* Marge à droite des icônes */
 }
 
-/* Style pour les flèches */
+/* Pour les fleches bibliotheques = awesome */
 .pagination .prev,
 .pagination .next {
     display: inline-block;
@@ -235,7 +235,7 @@ footer {
     background-color: #ddd;
 }
 
-/* Styles améliorés pour la barre de recherche */
+/* Barre de recherche bibliotheques = awesome */
 .search-container {
     position: relative;
     width: 300px;
@@ -284,77 +284,78 @@ footer {
 }
 
 .footer-text:hover {
-    color: #ff4500; /* Change la couleur du texte au survol #ff4500 */
+    color: #ff4500;            /* Ca rend pas mal = Change la couleur du texte au survol = #ff4500 */
 }
 
-/* Media Queries pour rendre les styles responsifs */
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
     header nav ul li {
-        margin-right: 10px; /* Réduire la marge entre les éléments du menu */
+        margin-right: 10px;          /* Donc Permet de Réduire la marge entre les éléments du menu */
     }
 
     .intro, .search-results {
-        width: 90%; /* Ajuster la largeur pour les petits écrans */
+        width: 90%;                  /* Ca permet d'Ajuster la largeur pour les petits écrans */
     }
 
     .btn {
-        margin-top: 15px; /* Ajuster la marge du bouton */
+        margin-top: 15px;              /* tout simplement la marge du bouton */
     }
 
     .product-block {
-        width: 100%; /* Afficher les produits sur toute la largeur */
+        width: 100%;                    /* montre les produits sur toute la largeur */
     }
 
     .footer {
-        padding: 0.5em 0; /* Ajuster le rembourrage du pied de page */
+        padding: 0.5em 0;                       /* adapter le rembourrage du pied de page */
     }
 
     .pagination .page-link {
-        padding: 6px 12px; /* Ajuster le rembourrage des liens de pagination */
-        font-size: 14px; /* Ajuster la taille de la police pour les petits écrans */
+        padding: 6px 12px;                      /* adapter le rembourrage des liens de pagination */
+        font-size: 14px;                         /* adapter la taille de la police pour les petits écrans */
     }
 
     #search-input {
-        width: 80%; /* Ajuster la largeur de l'entrée de recherche */
+        width: 80%;                              /* adapter la largeur de l'entrée de recherche */
     }
 
     .search-button {
-        right: 5px; /* Ajuster la position du bouton de recherche */
+        right: 5px;                             /* adapter la position du bouton de recherche */
     }
 }
 
+/* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 480px) {
     header nav ul li {
-        margin-right: 5px; /* Réduire davantage la marge entre les éléments du menu */
+        margin-right: 5px;             /* Ca Permet de réduire davantage la marge entre les éléments du menu */
     }
 
     .intro, .search-results {
-        width: 95%; /* Ajuster la largeur pour les écrans très petits */
+        width: 95%;                    /* Adapter la largeur pour les écrans très petits */
     }
 
     .btn {
-        padding: 8px 16px; /* Ajuster le rembourrage du bouton */
-        font-size: 14px; /* Ajuster la taille de la police pour les petits écrans */
+        padding: 8px 16px;           /* Ajuster le rembourrage du bouton */
+        font-size: 14px;             /* Permet d'ajuster la taille de la police pour les petits écrans */
     }
 
     .product-block {
-        width: 100%; /* Afficher les produits sur toute la largeur */
+        width: 100%;               /* Ca Affiche les produits sur toute la largeur */
     }
 
     .footer {
-        padding: 0.2em 0; /* Ajuster davantage le rembourrage du pied de page */
+        padding: 0.2em 0;      /* Permet le rembourrage du pied de page */
     }
 
     .pagination .page-link {
-        padding: 4px 8px; /* Ajuster davantage le rembourrage des liens de pagination */
-        font-size: 12px; /* Ajuster davantage la taille de la police pour les écrans très petits */
+        padding: 4px 8px;     /*Rappelle : le rembourrage des liens de pagination */
+        font-size: 12px;      /* Rappelle :  la taille de la police pour les écrans très petits */
     }
 
     #search-input {
-        width: 70%; /* Ajuster davantage la largeur de l'entrée de recherche */
+        width: 70%;          /* Rappelle : la largeur de l'entrée de recherche */
     }
 
     .search-button {
-        right: 2px; /* Ajuster davantage la position du bouton de recherche */
+        right: 2px;            /* Rappelle : la position du bouton de recherche */
     }
 }
