@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-// FetchProductData récupère les données d'un produit via son code-barres.
+// DONNEE DE L'API OPEN FOOD FACTS : FetchProductData récupère les données d'un produit via son code-barres.
 func FetchProductData(barcode string) (interface{}, error) {
 	url := fmt.Sprintf("https://world.openfoodfacts.org/api/v0/product/%s.json", barcode)
 	resp, err := http.Get(url)
@@ -33,7 +33,7 @@ func FetchProductData(barcode string) (interface{}, error) {
 	return result, nil
 }
 
-// FetchProductsByCategory récupère tous les produits d'une catégorie donnée.
+// DONNEE DE L'API OPEN FOOD FACTS : :FetchProductsByCategory récupère tous les produits d'une catégorie donnée.
 func FetchProductsByCategory(category string) ([]interface{}, error) {
 	url := fmt.Sprintf("https://world.openfoodfacts.org/category/%s.json", category)
 	resp, err := http.Get(url)
@@ -53,7 +53,7 @@ func FetchProductsByCategory(category string) ([]interface{}, error) {
 	return result.Products, nil
 }
 
-// FetchProductsByCountry récupère tous les produits d'un pays spécifique.
+// DONNEE DE L'API OPEN FOOD FACTS :FetchProductsByCountry récupère tous les produits d'un pays spécifique.
 func FetchProductsByCountry(country string) ([]interface{}, error) {
 	url := fmt.Sprintf("https://world.openfoodfacts.org/country/%s.json", country)
 	resp, err := http.Get(url)
@@ -73,7 +73,7 @@ func FetchProductsByCountry(country string) ([]interface{}, error) {
 	return result.Products, nil
 }
 
-// HandleProductsByCategory affiche les produits par catégorie.
+// HandleProductsByCategory  permet d'afficher les produits par catégorie.
 func HandleProductsByCategory(w http.ResponseWriter, r *http.Request) {
 	category := r.URL.Query().Get("category")
 	products, err := FetchProductsByCategory(category)
@@ -82,12 +82,12 @@ func HandleProductsByCategory(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Écrire la réponse en JSON
+	// Ca renvooie du JSON = ecrit en json
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(products)
 }
 
-// HandleProductsByCountry affiche les produits par pays.
+// HandleProductsByCountry Ca permet d'affiche les produits par pays.
 func HandleProductsByCountry(w http.ResponseWriter, r *http.Request) {
 	country := r.URL.Query().Get("country")
 	products, err := FetchProductsByCountry(country)
@@ -102,7 +102,7 @@ func HandleProductsByCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func FetchSearchResults(searchQuery string) ([]interface{}, error) {
-	// Construire l'URL de recherche avec la requête de recherche
+	// DONNEE DE L'API OPEN FOOD FACTS : C'est l'URL de recherche avec la requête de recherche
 	searchURL := fmt.Sprintf("https://world.openfoodfacts.org/cgi/search.pl?search_terms=%s&search_simple=1&action=process&json=1", url.QueryEscape(searchQuery))
 
 	// Effectuer une requête GET à l'API de recherche
@@ -118,7 +118,7 @@ func FetchSearchResults(searchQuery string) ([]interface{}, error) {
 		return nil, err
 	}
 
-	// Analyser le corps de la réponse JSON
+	// Analyse de la réponse du  JSON
 	var searchResponse struct {
 		Products []interface{} `json:"products"`
 	}
@@ -127,7 +127,7 @@ func FetchSearchResults(searchQuery string) ([]interface{}, error) {
 		return nil, err
 	}
 
-	// Renvoyer les produits trouvés
+	// Ca permet de Renvoyer les produits trouvés
 	return searchResponse.Products, nil
 }
 
@@ -152,7 +152,7 @@ func ReadFavorites() ([]models.Favorite, error) {
 	return favorites, nil
 }
 
-// WriteFavorites écrit les favoris dans le fichier JSON.
+// WriteFavorites : Donc ca gere les favoris dans le fichier JSON qui renvoie au serveur coté client pour afficher les données pour "éviter de surcharger"
 func WriteFavorites(favorites []models.Favorite) error {
 	data, err := json.MarshalIndent(favorites, "", "    ")
 	if err != nil {

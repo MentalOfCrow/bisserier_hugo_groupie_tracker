@@ -1,6 +1,6 @@
 package models
 
-// ProductResponse représente la structure complète de la réponse pour un produit
+// ProductResponse  = représente la structure complète de la réponse pour un produit
 type ProductResponse struct {
 	Code      string  `json:"code"`
 	Product   Product `json:"product"`
@@ -11,7 +11,7 @@ type ProductResponse struct {
 	Count     int     `json:"count"`
 }
 
-// Product contient des informations détaillées sur un produit
+// Product = contient des informations détaillées sur un produit
 type Product struct {
 	ID                      string `json:"_id"`
 	Allergens               string `json:"allergens"`
@@ -42,7 +42,7 @@ type Product struct {
 	CountriesTags           string `json:"countries_tags"`
 	IngredientsFromPalmOilN int    `json:"ingredients_from_palm_oil_n"`
 
-	// Champs pour les images
+	// Champs pour les images = Permet d'afficher les images
 	ImageFrontSmallURL       string  `json:"image_front_small_url"`
 	ImageFrontThumbURL       string  `json:"image_front_thumb_url"`
 	ImageFrontURL            string  `json:"image_front_url"`
@@ -58,7 +58,7 @@ type Product struct {
 	Images                   []Image `json:"images"`
 }
 
-// ProductDetail représente les détails complets d'un produit
+// ProductDetail = Ca représente les détails complets d'un produit
 type ProductDetail struct {
 	ID            string `json:"_id"`
 	Allergens     string `json:"allergens"`
@@ -68,17 +68,17 @@ type ProductDetail struct {
 	ProductNameFr string `json:"product_name"`
 	ProductNameEn string `json:"product_name_en"`
 	Ingredients   string `json:"ingredients_text"`
-	// Pas besoin d'en rajouter pour le moment
+	// Pas besoin d'en rajouter pour le moment pour éviter de surcharger l'api Open Food Facts
 }
 
-// Image représente la structure pour les données d'image liées au produit
+// Image = représente la structure pour les données d'image liées au produit
 type Image struct {
 	Uploader  string     `json:"uploader"`
 	UploadedT int        `json:"uploaded_t"`
 	Sizes     ImageSizes `json:"sizes"`
 }
 
-// ImageSizes contient les différentes tailles d'image disponibles
+// ImageSizes = contient les différentes tailles d'image disponibles
 type ImageSizes struct {
 	Thumb  ImageSize `json:"thumb"`
 	Small  ImageSize `json:"small"`
@@ -86,21 +86,21 @@ type ImageSizes struct {
 	Large  ImageSize `json:"large"`
 }
 
-// ImageSize détient l'URL et les dimensions pour une taille spécifique d'image
+// ImageSize =  détient l'URL et les dimensions pour une taille spécifique d'image
 type ImageSize struct {
 	URL    string `json:"url"`
 	Width  int    `json:"width"`
 	Height int    `json:"height"`
 }
 
-// Permet de mettre en place
+// Permet de mettre en place les Favorites = Pour affcher les données quand il clique sur l'etoile
 type Favorite struct {
 	Code     string `json:"code"`
 	Name     string `json:"name"`
 	ImageURL string `json:"image_url"`
 }
 
-// Pour prend les informations de API et les renvoyers dans productdetails pour les affichers ensuite
+// Permet ProductDetails probleme sur API open food facts
 type ProductDetails struct {
 	ID            string `json:"_id"`
 	Allergens     string `json:"allergens"`
@@ -112,7 +112,7 @@ type ProductDetails struct {
 	Ingredients   string `json:"ingredients"`
 }
 
-// Endpoints pour les requêtes API sinon ca affiche pas les produits de API Open Food Facts
+// Endpoints pour les requêtes de l'API = sinon ca affiche pas les produits de API Open Food Facts
 const (
 	SearchProductEndpoint     = "https://world.openfoodfacts.org/api/v0/product/%s.json"
 	ListProductsByCategory    = "https://world.openfoodfacts.org/category/%s.json"

@@ -22,13 +22,13 @@
     </footer>
     <script src="/asset/js/main.js"></script>
     <script>
-        // Fonction pour charger les favoris depuis le fichier JSON
+        // Fonction pour charger les favoris depuis le fichier JSON = favorites.json
         function loadFavorites() {
             fetch('/api/favorites') 
                 .then(response => response.json())
                 .then(data => {
                     const favoritesContainer = document.getElementById('favorites-container');
-                    favoritesContainer.innerHTML = ''; // Effacer les favoris précédents
+                    favoritesContainer.innerHTML = ''; // Effacer les favoris précédents = evite la surcharge de données
                     data.forEach(favorite => {
                         const favoriteItem = document.createElement('div');
                         favoriteItem.classList.add('favorite-item');
@@ -42,7 +42,7 @@
                 .catch(error => console.error('Erreur lors du chargement des favoris:', error));
         }
 
-        // Appeler la fonction pour charger les favoris lors du chargement de la page
+        // Fonction permettant de charger les favoris lors du chargement de la page
         document.addEventListener('DOMContentLoaded', loadFavorites);
     </script>
 </body>
