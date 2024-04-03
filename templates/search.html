@@ -25,21 +25,63 @@
     <h1>Résultats de recherche</h1>
     <div id="search-form" class="search-container">
         <form id="search-form">
-            <input type="text" id="search-input" placeholder="Rechercher...">
-            <!-- On peux rajouter des filtres si on le souhaite mais pour pas surcharger l'API tellement qu'il y a de données-->
-            <select id="category-filter">
-                <option value="">Toutes catégories</option>
-                <option value="boissons">Boissons</option>
-                <option value="snacks">Snacks</option>
-                <!-- On peux si on le souhaite rajouter des boissons pays mais pour pas surcharger l'API tellement qu'il y a de données -->
-            </select>
-            <select id="country-filter">
-                <option value="">Tous pays</option>
-                <option value="france">France</option>
-                <option value="united-states">États-Unis</option>
-                <!-- On peux si on le souhaite rajouter des pays mais pour pas surcharger l'API tellement qu'il y a de données -->
-            </select>
-            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            <div class="search-input-container">
+                <input type="text" id="search-input" placeholder="Rechercher...">
+                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <!-- Ce sont les differentes types de filtres -->
+            <div class="filter-container">
+                <label class="filter-label" for="category-filter"><i class="fas fa-filter"></i> Catégorie:</label>
+                <select id="category-filter" class="filter-select">
+                    <option value="">Toutes catégories</option>
+                    <option value="boissons">Boissons</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="fruits">Fruits</option>
+                    <option value="légumes">Légumes</option>
+                    <option value="produits-laitiers">Produits laitiers</option>
+                    <option value="viandes">Viandes</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <label class="filter-label" for="country-filter"><i class="fas fa-globe"></i> Pays:</label>
+                <select id="country-filter" class="filter-select">
+                    <option value="">Tous pays</option>
+                    <option value="france">France</option>
+                    <option value="united-states">États-Unis</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <label class="filter-label" for="nutriscore-filter"><i class="fas fa-heartbeat"></i> Nutriscore:</label>
+                <select id="nutriscore-filter" class="filter-select">
+                    <option value="">Tous nutriscrores</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <label class="filter-label" for="nova-filter"><i class="fas fa-rocket"></i> NOVA:</label>
+                <select id="nova-filter" class="filter-select">
+                    <option value="">Tous NOVA</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="filter-container">
+                <label class="filter-label" for="ecoscore-filter"><i class="fas fa-leaf"></i> Eco-score:</label>
+                <select id="ecoscore-filter" class="filter-select">
+                    <option value="">Tous éco-scores</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </div>
         </form>
     </div>
     <div class="results-container" id="search-results"></div>
@@ -50,6 +92,26 @@
         document.getElementById('search-form').addEventListener('submit', function(event) {
             event.preventDefault(); 
             searchProducts();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // C'est pour les log consoles(main.js) tres utiles pour les debugs et Ajout d'écouteurs d'événements aux éléments de formulaire pour déclencher la recherche
+            document.getElementById('category-filter').addEventListener('change', function() {
+                searchProducts();
+            });
+            document.getElementById('country-filter').addEventListener('change', function() {
+                searchProducts();
+            });
+            document.getElementById('nutriscore-filter').addEventListener('change', function() {
+                searchProducts();
+            });
+            document.getElementById('nova-filter').addEventListener('change', function() {
+                searchProducts();
+            });
+            document.getElementById('ecoscore-filter').addEventListener('change', function() {
+                searchProducts();
+            });
         });
     </script>
 </body>

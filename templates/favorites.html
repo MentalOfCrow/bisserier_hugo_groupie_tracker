@@ -17,9 +17,10 @@
             
         </div>
     </main>
+
     <script src="/asset/js/main.js"></script>
     <script>
-        // Fonction pour charger les favoris depuis le fichier JSON = favorites.json
+        // C'est la Fonction pour charger les favoris depuis le fichier JSON = favorites.json
         function loadFavorites() {
             fetch('/api/favorites') 
                 .then(response => response.json())
@@ -39,7 +40,7 @@
                 .catch(error => console.error('Erreur lors du chargement des favoris:', error));
         }
 
-        // Fonction permettant de charger les favoris lors du chargement de la page
+        // Ca permet de charger les favoris lors du chargement de la page
         document.addEventListener('DOMContentLoaded', loadFavorites);
     </script>
 </body>

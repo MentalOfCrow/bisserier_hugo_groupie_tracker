@@ -1,4 +1,5 @@
 /* Styles par défaut pour tous les appareils */
+/* Styles pour la pagination */
 .pagination {
     display: flex;
     justify-content: center;
@@ -22,19 +23,25 @@
 
 .pagination .previous,
 .pagination .next {
-    margin: 0 20px;
     background-color: #f0f0f0;
     border-radius: 50%;
     padding: 10px;
 }
 
-.pagination .active {
+.pagination .current {
     color: #fff;
     background-color: #007bff;
     border-radius: 50%;
     padding: 10px;
     font-weight: bold;
 }
+
+/* Styles pour les icônes Font Awesome */
+.pagination i {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 
 /* Permet de rendre responsive la page en utlisant Media Queries  */
 @media only screen and (max-width: 768px) {
