@@ -45,48 +45,48 @@ function displaySearchResults(results) {
         var productBlock = document.createElement('div');
         productBlock.classList.add('product-block');
 
-        // Création et ajout des éléments de produit (nom, marque, image)
-        var productName = document.createElement('p');
-        productName.textContent = result.product_name;
+        // Création et ajout de l'image du produit
+        var productImage = document.createElement('img');
+        productImage.src = result.image_front_url;
+        productImage.alt = `Image de ${result.product_name}`;
+        productImage.classList.add('product-image');
+        productBlock.appendChild(productImage);
+
+        // Création et ajout du nom du produit et de la marque
+        var productName = document.createElement('div');
+        productName.classList.add('product-name');
+        productName.innerHTML = `${result.product_name} - ${result.brands}`;
         productBlock.appendChild(productName);
+        // Création et ajout des icônes des scores
+        var scoresContainer = document.createElement('div');
+        scoresContainer.classList.add('scores-container');
 
-        // Ajouter la marque si elle est disponible
-        if (result.brands) {
-            var productBrand = document.createElement('p');
-            productBrand.textContent = `Marque: ${result.brands}`;
-            productBlock.appendChild(productBrand);
-        }
+        // Ajout de l'icône Nutriscore
+        var nutriscoreIcon = document.createElement('img');
+        nutriscoreIcon.src = `/asset/img/nutriscore-${result.nutrition_grade_fr}.svg`;
+        nutriscoreIcon.alt = `Nutriscore ${result.nutrition_grade_fr}`;
+        nutriscoreIcon.classList.add('score-icon');
+        scoresContainer.appendChild(nutriscoreIcon);
 
-        // Ajouter l'image si elle est disponible
-        if (result.image_front_url) {
-            var productImage = document.createElement('img');
-            productImage.src = result.image_front_url;
-            productImage.alt = `Image de ${result.product_name}`;
-            productImage.classList.add('product-image');
-            productBlock.appendChild(productImage);
-        }
+        // Ajout de l'icône NOVA
+        var novaIcon = document.createElement('img');
+        novaIcon.src = `/asset/img/nova-group-${result.nova_group}.svg`;
+        novaIcon.alt = `Nova Group ${result.nova_group}`;
+        novaIcon.classList.add('score-icon');
+        scoresContainer.appendChild(novaIcon);
 
-        // Ajout de Nutriscore et Nova score si disponibles
-        if (result.nutrition_grade_fr) {
-            var nutriscore = document.createElement('p');
-            nutriscore.textContent = `Nutriscore: ${result.nutrition_grade_fr.toUpperCase()}`;
-            productBlock.appendChild(nutriscore);
-        }
-        if (result.nova_group) {
-            var novaScore = document.createElement('p');
-            novaScore.textContent = `Nova Score: ${result.nova_group}`;
-            productBlock.appendChild(novaScore);
-        }
+        // Ajout de l'icône EcoScore
+        var ecoscoreIcon = document.createElement('img');
+        ecoscoreIcon.src = `/asset/img/ecoscore-${result.ecoscore_grade}.svg`;
+        ecoscoreIcon.alt = `EcoScore ${result.ecoscore_grade}`;
+        ecoscoreIcon.classList.add('score-icon');
+        scoresContainer.appendChild(ecoscoreIcon);
 
-        // Ajout de l'événement de clic pour rediriger vers la page de détails du produit
-        productBlock.addEventListener('click', function() {
-            window.location.href = `/product?code=${result.code}`;
-        });
+        productBlock.appendChild(scoresContainer);
 
         searchResultsDiv.appendChild(productBlock);
     });
 }
-
 
 // Fonction pour afficher la pagination
 function displayPagination(currentPage, totalPages) {
