@@ -3,12 +3,15 @@ package utils
 import (
 	"APIGroupieTracker/models"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 )
+
+var EmptyFileError = errors.New("empty or non-existent file")
 
 // DONNEE DE L'API OPEN FOOD FACTS : FetchProductData récupère les données d'un produit via son code-barres.
 func FetchProductData(barcode string) (interface{}, error) {
@@ -140,10 +143,17 @@ func ReadFavorites() ([]models.Favorite, error) {
 	if err != nil {
 		fmt.Println("Erreur lors de la lecture des favoris:", err)
 		if os.IsNotExist(err) {
-			return []models.Favorite{}, nil
+			return []models.Favorite{}, nil // Retourner une liste vide si le fichier n'existe pas
 		}
 		return nil, err
 	}
+
+	// Vérifier si le fichier est vide
+	if len(bytes) == 0 {
+		fmt.Println("Le fichier des favoris est vide.")
+		return []models.Favorite{}, nil // Retourner une liste vide si le fichier est vide
+	}
+
 	err = json.Unmarshal(bytes, &favorites)
 	if err != nil {
 		fmt.Println("Erreur lors de la désérialisation des favoris:", err)

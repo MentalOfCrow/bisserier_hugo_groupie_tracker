@@ -1,3 +1,4 @@
+// Fonction pour rechercher des produits
 function searchProducts(page = 1) {
     var query = document.getElementById('search-input').value;
     var category = document.getElementById('category-filter').value;
@@ -5,7 +6,7 @@ function searchProducts(page = 1) {
     
     var endpoint = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&page=${page}&page_size=20&search_simple=1&action=process&json=1`;
     
-    // Ajoute des filtres à l'URL si nécessaire
+    // Ajouter des filtres à l'URL si nécessaire
     if(category) {
         endpoint += `&tagtype_0=categories&tag_contains_0=contains&tag_0=${category}`;
     }
@@ -31,7 +32,7 @@ function searchProducts(page = 1) {
         });
 }
 
-
+// Fonction pour afficher les résultats de la recherche
 function displaySearchResults(results) {
     var searchResultsDiv = document.getElementById('search-results');
     searchResultsDiv.innerHTML = ''; // Efface les résultats précédents
@@ -57,6 +58,17 @@ function displaySearchResults(results) {
         productName.classList.add('product-name');
         productName.innerHTML = `${result.product_name} - ${result.brands}`;
         productBlock.appendChild(productName);
+        
+        // Création du bouton de favori
+        var favoriteButton = document.createElement('button');
+        favoriteButton.innerText = '★';
+        favoriteButton.classList.add('favorite-icon');
+        favoriteButton.setAttribute('data-product', result.code);
+        favoriteButton.addEventListener('click', function() {
+            toggleFavorite(this, result.code, result.product_name, result.image_front_url);
+        });
+        productBlock.appendChild(favoriteButton);
+
         // Création et ajout des icônes des scores
         var scoresContainer = document.createElement('div');
         scoresContainer.classList.add('scores-container');
@@ -131,12 +143,7 @@ function displayPagination(currentPage, totalPages) {
     paginationContainer.appendChild(nextButton);
 }
 
-// Fonction pour gérer les clics sur les produits (à remplir avec le code nécessaire)
-function onProductClick(productCode) {
-    // Rediriger l'utilisateur vers la page du produit sélectionné
-    window.location.href = `/product?code=${productCode}`;
-}
-
+// Fonction pour ajouter ou supprimer un produit des favoris
 function toggleFavorite(element, productCode, productName, imageUrl) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     let isFavorite = favorites.some(fav => fav.code === productCode);
@@ -161,6 +168,7 @@ function toggleFavorite(element, productCode, productName, imageUrl) {
     });
 }
 
+// Fonction pour mettre à jour la liste des favoris dans le stockage local
 function updateFavoritesList(isFavorite, favorites, favoriteData, element, productCode) {
     if (isFavorite) {
         favorites = favorites.filter(fav => fav.code !== productCode);
@@ -171,8 +179,6 @@ function updateFavoritesList(isFavorite, favorites, favoriteData, element, produ
     }
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
-
-
 
 // Fonction pour mettre à jour l'icône de favori lors du chargement de la page
 function updateFavoriteIcon(productCode) {
@@ -187,7 +193,10 @@ function updateFavoriteIcon(productCode) {
     }
 }
 
-// Événement pour gérer les clics sur l'icône de favori
+// Appel de la fonction pour mettre à jour les icônes de favori lors du chargement de la page
+updateFavoriteIcon(productCode);
+
+// Gestion des clics sur l'icône de favori
 document.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains('favorite-icon')) {
         const productCode = event.target.getAttribute('data-product');
@@ -195,11 +204,3 @@ document.addEventListener('click', function(event) {
         toggleFavorite(event.target, productCode);
     }
 });
-
-// Appel de la fonction pour mettre à jour les icônes de favori lors du chargement de la page
-updateFavoriteIcon(productCode);
-
-function onProductClick(productCode) {
-    window.location.href = '/product?code=' + productCode;
-}
-

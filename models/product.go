@@ -93,11 +93,26 @@ type ImageSize struct {
 	Height int    `json:"height"`
 }
 
-// Permet de mettre en place les Favorites = Pour affcher les données quand il clique sur l'etoile
+// Favorite des produits
 type Favorite struct {
-	Code     string `json:"code"`
-	Name     string `json:"name"`
-	ImageURL string `json:"image_url"`
+	Code          string `json:"code"`
+	Name          string `json:"name"`
+	ImageURL      string `json:"image_url"`
+	Brand         string `json:"brand"`
+	Categories    string `json:"categories"`
+	GenericName   string `json:"generic_name"`
+	Ingredients   string `json:"ingredients"`
+	Quantity      string `json:"quantity"`
+	Packaging     string `json:"packaging"`
+	Labels        string `json:"labels"`
+	Allergens     string `json:"allergens"`
+	NutriScore    string `json:"nutri_score"`
+	NOVA          string `json:"nova"`
+	EcoScore      string `json:"eco_score"`
+	Origins       string `json:"origins"`
+	Manufacturing string `json:"manufacturing"`
+	Stores        string `json:"stores"`
+	Countries     string `json:"countries"`
 }
 
 // Permet ProductDetails probleme sur API open food facts problmes
@@ -124,6 +139,6 @@ const (
 	ProductsByLabelEndpoint    = "https://world.openfoodfacts.org/label/%s.json"
 	ProductsByAdditiveEndpoint = "https://world.openfoodfacts.org/additive/%s.json"
 	ProductsByAllergenEndpoint = "https://world.openfoodfacts.org/allergen/%s.json"
-	UserContributionsEndpoint  = "https://world.openfoodfacts.org/contributor/%s.json"
+	UserContributionsEndpoint  = "https://world.openfoodfacts.org/contribtour/%s.json"
 	GeneralSearchEndpoint      = "https://world.openfoodfacts.org/cgi/search.pl"
 )

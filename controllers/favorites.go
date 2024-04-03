@@ -34,6 +34,7 @@ func AddToFavorites(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{"message": "Favori ajouté avec succès"})
 }
 
+// Supprimer un favori
 func RemoveFromFavorites(w http.ResponseWriter, r *http.Request) {
 	var favoriteToRemove models.Favorite
 	err := json.NewDecoder(r.Body).Decode(&favoriteToRemove)
@@ -67,13 +68,17 @@ func RemoveFromFavorites(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{"message": "Favori supprimé avec succès"})
 }
 
-// GetFavorites renvoie la liste des favoris.
 func GetFavorites(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	favorites, err := utils.ReadFavorites()
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		if err == utils.EmptyFileError {
+			// Gérer le cas où le fichier est vide ou inexistant
+			favorites = []models.Favorite{} // Retourner une liste vide de favoris
+		} else {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 	json.NewEncoder(w).Encode(favorites)
 }
